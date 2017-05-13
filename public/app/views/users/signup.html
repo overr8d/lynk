@@ -1,0 +1,24 @@
+<div class="page-header">
+    <h1>Signup</h1>
+</div>
+
+<form ng-submit="signup.signupUser(data);">
+    <label>Email:</label>
+    <input class="form-control" type="text" name="email" placeholder="Please enter your email..." ng-model="signup.data.email">
+    <br>
+    <label>Password:</label>
+    <input class="form-control" type="password" name="password" placeholder="Please enter your password..." ng-model="signup.data.password">
+    <br>
+    <button class="btn btn-primary" type="submit">Register</button>
+</form>
+
+<br>
+
+<div class="row show-hide-message" ng-show="signup.successMsg">
+    <div class="alert alert-success">{{signup.successMsg}}</div>
+</div>
+<br>
+
+<div class="row show-hide-message" ng-show="signup.errorMsg">
+    <div class="alert alert-danger">{{signup.errorMsg}}</div>
+</div>
