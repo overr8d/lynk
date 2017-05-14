@@ -1,4 +1,5 @@
 var User = require('../models/User');
+var Project = require('../models/projects');
 var jwt = require('jsonwebtoken');
 var secret = 'lynkMEANStack';
 
@@ -46,7 +47,44 @@ module.exports = function(router) {
 
     });
 
-    // Define a middleware to decode the token
+    // http://localhost:8080/api/dashboard
+    router.get('/dashboard', function (req, res) {
+        Project.find(function (err, projects) {
+            if(err){
+                res.json({success: false, message: "There is no project in the database"});
+            }
+            res.json({success: true, projects: projects});
+        });
+    });
+
+    // http://localhost:8080/api/dashboard
+    router.post('/dashboard', function (req, res) {
+        var project = new Project();
+        project.title = req.body.title;
+        if(req.body.title == null || req.body.title == ''){
+            res.json({success: false, message: 'Title invalid!'});
+        } else {
+            project.save(function (err) {
+                if(err){
+                    res.json({success: false, message: "Title already exists!!"});
+                } else {
+                    res.json({success: true, message: "Project created!"});
+                }
+            });
+        }
+    });
+
+    router.get('/dashboard/:project_id', function (req, res) {
+        Project.findOne({_id: req.params.project_id}, function (err, project) {
+            if(err){
+                res.json({success: false, message: "Unable to find the specified project!"});
+            } else {
+                res.json({success: true, message: "successfully found the project!", project: project});
+            }
+        });
+    });
+
+        // Define a middleware to decode the token
     router.use(function(req,res,next){
         var token = req.body.token || req.body.query ||req.headers['x-access-token'];
         if(token){
@@ -62,7 +100,7 @@ module.exports = function(router) {
             res.json({success: false, message: 'No token provided!'});
         }
     });
-
+    // http://localhost:8080/api/me
     router.post('/me', function (req, res) {
         res.send(req.decoded);
     });

@@ -15,6 +15,14 @@ var app = angular.module('appRoutes',["ngRoute"])
             })
             .when("/dashboard",{
                 templateUrl: 'app/views/users/dashboard.html',
+                controller: 'projectsController',
+                controllerAs: 'projects',
+                authenticated: true
+            })
+            .when("/dashboard/:project_id",{
+                templateUrl: 'app/views/users/project.html',
+                controller: 'prjController',
+                controllerAs: 'project',
                 authenticated: true
             })
             .otherwise({redirectTo:"/login"});

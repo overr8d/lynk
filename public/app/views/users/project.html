@@ -2,16 +2,12 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Project Link</th>
             <th>Project Title</th>
         </tr>
         </thead>
-        <tr ng-repeat="project in projects.data">
+        <tr>
             <td>
-                <a ng-href="/dashboard/{{project._id}}">{{project._id}}</a>
-            </td>
-            <td>
-                {{project.title}}
+                {{project.data.title}}
             </td>
         </tr>
     </table>
