@@ -45,7 +45,6 @@ angular.module('authService', [])
         authTokenFactory.setToken = function (token) {
             if(token){
                 $window.localStorage.setItem('token', token);
-                console.log('invoked');
             } else {
                 $window.localStorage.removeItem('token');
             }
