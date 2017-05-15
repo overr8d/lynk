@@ -14,15 +14,21 @@ var app = angular.module('appRoutes',["ngRoute"])
                 authenticated: false
             })
             .when("/dashboard",{
-                templateUrl: 'app/views/users/dashboard.html',
+                templateUrl: 'app/views/projects/dashboard.html',
                 controller: 'projectsController',
                 controllerAs: 'projects',
                 authenticated: true
             })
-            .when("/dashboard/:project_id",{
-                templateUrl: 'app/views/users/project.html',
+            .when("/project/:project_id",{
+                templateUrl: 'app/views/projects/project.html',
                 controller: 'prjController',
                 controllerAs: 'project',
+                authenticated: true
+            })
+            .when("/history",{
+                templateUrl: 'app/views/projects/history.html',
+                controller: 'hstryController',
+                controllerAs: 'history',
                 authenticated: true
             })
             .otherwise({redirectTo:"/login"});

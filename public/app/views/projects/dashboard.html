@@ -1,0 +1,83 @@
+<div class="container">
+
+    <table class="table table-striped">
+        <h1>New Projects</h1>
+        <thead>
+        <tr>
+            <th>Project Title</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="project in projects.new">
+            <td>
+                <a ng-href="/project/{{project._id}}">{{project.title}}</a>
+            </td>
+            <td>
+                {{project.createdAt}}
+            </td>
+            <td>
+                {{project.updatedAt}}
+            </td>
+            <td>
+                {{project.status}}
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-striped">
+        <h1>Pending Projects</h1>
+        <thead>
+        <tr>
+            <th>Project Title</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="project in projects.pending">
+            <td>
+                <a ng-href="/project/{{project._id}}">{{project.title}}</a>
+            </td>
+            <td>
+                {{project.createdAt}}
+            </td>
+            <td>
+                {{project.updatedAt}}
+            </td>
+            <td>
+                {{project.status}}
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-striped">
+        <h1>Expired Projects</h1>
+        <thead>
+        <tr>
+            <th>Project Title</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="project in projects.expired">
+            <td>
+                <a ng-href="/project/{{project._id}}">{{project.title}}</a>
+            </td>
+            <td>
+                {{project.createdAt}}
+            </td>
+            <td>
+                {{project.updatedAt}}
+            </td>
+            <td>
+                {{project.status}}
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+

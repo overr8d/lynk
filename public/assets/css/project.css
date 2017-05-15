@@ -1,0 +1,24 @@
+.toggle-button{
+   display: inline;
+}
+.username{
+    margin-left: 900px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 100px;
+}
+
+
+.login-form{
+    margin-left: 700px;
+    margin-right:700px;
+}
+
+.signup-form{
+    margin-left: 700px;
+    margin-right:700px;
+}
+.active, .inactive {font-size:100px;cursor:pointer;}
+.active, .inactive {font-size:100px;cursor:pointer;}
+i.active { color: #5cb85c}
+i.inactive {color: #d9534f}

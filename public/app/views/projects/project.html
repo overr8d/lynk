@@ -1,0 +1,39 @@
+<div class="container">
+    <table class="table table-striped">
+        <h1>{{project.data.title}}</h1>
+        <thead>
+        <tr>
+            <th>Expert Name</th>
+            <th>Expert Description</th>
+            <th>Expert Status</th>
+            <th>Approve/Reject</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="expert in project.data.experts">
+            <td>
+                {{expert.name}}
+            </td>
+            <td>
+                {{expert.description}}
+            </td>
+            <td>
+                {{expert.status}}
+            </td>
+            <td>
+                <div class="toggle-button" ng-init="project.init($index);">
+                    <div>
+                        <i class="fa fa-toggle-on active"  ng-if="project.approved[$index] == true" ng-click="project.changeApprovedStatus($index, main.email);"></i>
+                        <i class="fa fa-toggle-on fa-rotate-180 inactive" ng-if="project.approved[$index] == false" ng-click="project.changeApprovedStatus($index, main.email);"></i>
+                        <label>Approve</label>
+                    </div>
+                    <div>
+                        <i class="fa fa-toggle-on active"  ng-if="project.rejected[$index] == true" ng-click="project.changeRejectedStatus($index, main.email);"></i>
+                        <i class="fa fa-toggle-on fa-rotate-180 inactive" ng-if="project.rejected[$index] == false" ng-click="project.changeRejectedStatus($index, main.email);"></i>
+                        <label>Reject</label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+

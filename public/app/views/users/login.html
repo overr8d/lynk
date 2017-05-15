@@ -1,24 +1,26 @@
-<div class="page-header">
+<div class = "img-rounded" align="middle">
+    <img src="../../../assets/lynk_logo.png"  width="531" height="170">
+</div>
+<div class="login-form" align="middle">
+<div class = "login">
     <h1>User Login</h1>
+    <form ng-submit="main.doLogin(data);" align="left">
+        <label>Email:</label>
+        <input class="form-control" type="text" name="email" placeholder="Please enter your email..." ng-model="main.data.email">
+        <br>
+        <label>Password:</label>
+        <input class="form-control" type="password" name="password" placeholder="Please enter your password..." ng-model="main.data.password">
+        <br>
+        <button class="btn btn-primary" type="submit">Login</button>
+    </form>
 </div>
-
-<form ng-submit="main.doLogin(data);">
-    <label>Email:</label>
-    <input class="form-control" type="text" name="email" placeholder="Please enter your email..." ng-model="main.data.email">
     <br>
-    <label>Password:</label>
-    <input class="form-control" type="password" name="password" placeholder="Please enter your password..." ng-model="main.data.password">
+    <div class="row show-hide-message" ng-show="main.successMsg">
+        <div class="alert alert-success">{{main.successMsg}}</div>
+    </div>
     <br>
-    <button class="btn btn-primary" type="submit">Login</button>
-</form>
-
-<br>
-
-<div class="row show-hide-message" ng-show="main.successMsg">
-    <div class="alert alert-success">{{main.successMsg}}</div>
+    <div class="row show-hide-message" ng-show="main.errorMsg">
+        <div class="alert alert-danger">{{main.errorMsg}}</div>
+    </div>
 </div>
-<br>
 
-<div class="row show-hide-message" ng-show="main.errorMsg">
-    <div class="alert alert-danger">{{main.errorMsg}}</div>
-</div>

@@ -1,0 +1,54 @@
+<div class="container" ng-init="history.init(main.email);">
+
+    <table class="table table-striped">
+        <h1>Actions taken by {{main.email}}</h1>
+        <thead>
+        <tr>
+            <th>
+            <a href="#" ng-click="history.sortType = 'expertName'; history.sortReverse = !history.sortReverse">
+                Expert Name
+                <span ng-show="history.sortType == 'expertName' && !history.sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="history.sortType == 'expertName' && history.sortReverse" class="fa fa-caret-up"></span>
+            </a>
+            </th>
+            <th>
+                <a href="#" ng-click="history.sortType = 'expertStatus'; history.sortReverse = !history.sortReverse">
+                    Expert Status
+                    <span ng-show="history.sortType == 'expertStatus' && !history.sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="history.sortType == 'expertStatus' && history.sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="history.sortType = 'projectTitle'; history.sortReverse = !history.sortReverse">
+                    Project Title
+                    <span ng-show="history.sortType == 'projectTitle' && !history.sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="history.sortType == 'projectTitle' && history.sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="history.sortType = 'updatedAt'; history.sortReverse = !history.sortReverse">
+                    Updated At
+                    <span ng-show="history.sortType == 'updatedAt' && !history.sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="history.sortType == 'updatedAt' && history.sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tr ng-repeat="hist in history.data | orderBy:history.sortType:history.sortReverse" >
+            <div ng-hide=true>
+                <td>
+                   {{hist.expertName}}
+                </td>
+                <td>
+                    {{hist.expertStatus}}
+                </td>
+                <td>
+                    {{hist.projectTitle}}
+                </td>
+                <td>
+                    {{hist.updatedAt}}
+                </td>
+            </div>
+        </tr>
+    </table>
+</div>

@@ -1,5 +1,6 @@
-var User = require('../models/User');
+var User = require('../models/user');
 var Project = require('../models/projects');
+var History = require('../models/history');
 var jwt = require('jsonwebtoken');
 var secret = 'lynkMEANStack';
 
@@ -47,6 +48,27 @@ module.exports = function(router) {
 
     });
 
+        // Define a middleware to decode the token
+    router.use(function(req,res,next){
+        var token = req.body.token || req.body.query ||req.headers['x-access-token'];
+        if(token){
+            jwt.verify(token, secret, function (err, decoded) {
+                if(err){
+                    res.json({success: false, message: 'Token invalid!'});
+                } else {
+                    req.decoded = decoded;
+                    next(); // will proceed to next router
+                }
+            });
+        } else {
+            res.json({success: false, message: 'No token provided!'});
+        }
+    });
+    // http://localhost:8080/api/me
+    router.post('/me', function (req, res) {
+        res.send(req.decoded);
+    });
+
     // http://localhost:8080/api/dashboard
     router.get('/dashboard', function (req, res) {
         Project.find(function (err, projects) {
@@ -73,8 +95,8 @@ module.exports = function(router) {
             });
         }
     });
-
-    router.get('/dashboard/:project_id', function (req, res) {
+    // http://localhost:8080/api/project/:project_id
+    router.get('/project/:project_id', function (req, res) {
         Project.findOne({_id: req.params.project_id}, function (err, project) {
             if(err){
                 res.json({success: false, message: "Unable to find the specified project!"});
@@ -83,27 +105,54 @@ module.exports = function(router) {
             }
         });
     });
-
-        // Define a middleware to decode the token
-    router.use(function(req,res,next){
-        var token = req.body.token || req.body.query ||req.headers['x-access-token'];
-        if(token){
-            jwt.verify(token, secret, function (err, decoded) {
-                if(err){
-                    res.json({success: false, message: 'Token invalid!'});
-                } else {
-                    req.decoded = decoded;
-                    next(); // will proceed to next router
+    // http://localhost:8080/api/project/:project_id
+    router.put('/project/:project_id', function (req, res) {
+        Project.findById(req.params.project_id, function (err, project) {
+            if(err) res.send(err);
+            project.title = req.body.title;
+            project.createdAt = req.body.createdAt;
+            project.updatedAt = req.body.updatedAt;
+            project.status = req.body.status;
+            project.experts = req.body.experts;
+            project.save(function (err) {
+                if(err) {
+                    res.json({success:false, message: 'project not updated!'});
                 }
-            });
-        } else {
-            res.json({success: false, message: 'No token provided!'});
+                res.json({success:true, message: 'project updated!'});
+            })
+        });
+    });
+
+    // http://localhost:8080/api/history
+    router.get('/history', function (req, res) {
+        History.find(function (err, history) {
+            if(err){
+                res.json({success: false, message: "There is no project in the database"});
+            }
+            res.json({success: true, history: history});
+        });
+    });
+    // http://localhost:8080/api/history
+    router.post('/history', function (req, res) {
+        var history = new History();
+        history.email = req.body.email;
+        if(req.body.updatedAt){
+            history.updatedAt = req.body.updatedAt;
         }
+        history.projectTitle = req.body.projectTitle;
+        history.expertName = req.body.expertName;
+        if(req.body.expertStatus){
+            history.expertStatus = req.body.expertStatus;
+        }
+        history.save(function (err) {
+            if(err){
+                res.json({success: false, message: "Error occurred!"});
+            } else {
+                res.json({success: true, message: "History created!"});
+            }
+        });
     });
-    // http://localhost:8080/api/me
-    router.post('/me', function (req, res) {
-        res.send(req.decoded);
-    });
+
 
     return router;
 }
