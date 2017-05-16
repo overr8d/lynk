@@ -38,11 +38,9 @@ var app = angular.module('appRoutes',["ngRoute"])
         });
     });
 
-
 app.run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
         if( next.$$route !== undefined){
-
             if(next.$$route.authenticated == true){
                 if(!Auth.isLoggedin()){
                     event.preventDefault();
@@ -57,7 +55,5 @@ app.run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $locatio
                 console.log('hello');
             }
         }
-
     });
-
 }]);

@@ -17,7 +17,7 @@ var projectSchema = new Schema({
 
 
 
-//***************** For Testing ********************
+//***************** Hard-coded Test Data ********************
 var Project = mongoose.model('Project', projectSchema);
 var prj = [];
 prj.push(new Project({title:"Ironman", createdAt:new Date(2008,1,1).toISOString(), status: 'EXPIRED'}));
@@ -36,6 +36,5 @@ prj.forEach(function (e) {
     }
     e.save();
 });
-
 //**************************************************
 module.exports= mongoose.model('Project', projectSchema);

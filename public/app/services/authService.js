@@ -19,15 +19,12 @@ angular.module('authService', [])
             } else {
                 $q.reject({message: 'User has no token!'});
             }
-
         };
-
         return authFactory;
     })
 
     .factory('AuthInterceptor', function (AuthToken) {
         var interceptorFactory = {};
-
         interceptorFactory.request = function (config) {
             var token = AuthToken.getToken();
             if(token){

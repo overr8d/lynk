@@ -4,10 +4,8 @@ angular.module('userController', ['authService'])
         this.signupUser = function () {
             app.errorMsg = false;
             $http.post('/api/signup', app.data).then(function (data) {
-                //console.log(data);
                 AuthToken.setToken(data.data.token);
                 if(data.data.success){
-                    //console.log(data);
                     app.successMsg = data.data.message;
                     $timeout(function() {
                         $location.path("/dashboard");

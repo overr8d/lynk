@@ -19,6 +19,7 @@ angular.module('projectController', ['projectService'])
             app.rejected[ind] = !app.approved[ind];
             app.checkStatusAndSave(ind, email);
         };
+
         this.checkStatusAndSave = function (ind, email) {
             if(app.approved[ind] && !app.rejected[ind]){
                 app.data.experts[ind].status = "APPROVED";
@@ -35,7 +36,7 @@ angular.module('projectController', ['projectService'])
             $http.post('api/history/', history);
         };
 
-       Project.get($routeParams.project_id).then(function (data) {
+        Project.get($routeParams.project_id).then(function (data) {
            app.data = data.data.project;
 
        });

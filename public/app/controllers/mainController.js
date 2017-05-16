@@ -5,13 +5,10 @@ angular.module('mainController',['authService'])
         $rootScope.$on('$routeChangeStart', function () {
             if(Auth.isLoggedin()){
                 app.isLoggedin = true;
-               // console.log('User logged in!');
                 Auth.getUser().then(function (data) {
-              //      console.log(data.data.email);
                     app.email = data.data.email;
                 });
             } else {
-              //  console.log('User not logged in!');
                 app.isLoggedin = false;
                 app.email = '';
             }
@@ -20,10 +17,8 @@ angular.module('mainController',['authService'])
         this.doLogin = function () {
             app.errorMsg = false;
             $http.post('/api/login', app.data).then(function(data) {
-                //console.log(data);
                 AuthToken.setToken(data.data.token);
                 if(data.data.success){
-                    //console.log(data);
                     app.successMsg = data.data.message;
                     $timeout(function() {
                         $location.path("/dashboard");
