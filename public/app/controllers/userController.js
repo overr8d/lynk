@@ -1,3 +1,4 @@
+// Controller for /signup, signs up the user
 angular.module('userController', ['authService'])
     .controller('signupController', function (AuthToken,$http, $location, $timeout) {
         var app = this;

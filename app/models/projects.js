@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
+// nested schema within project schema to hold expert details
 var expertSchema = new Schema({
     name: {type:String, required:true, unique:true, maxlength:20},
     description: {type: String, required:true, maxlength:1000},
     status:{type: String, enum:['PENDING', 'APPROVED', 'REJECTED'], default: 'PENDING'}
 });
-
+// project schema that holds project details
 var projectSchema = new Schema({
     title: {type: String, required: true, unique: true, maxlength: 50},
     createdAt: {type: Date, default: Date.now},

@@ -4,6 +4,7 @@ var History = require('../models/history');
 var jwt = require('jsonwebtoken');
 var secret = 'lynkMEANStack';
 
+//******************** API Routes *******************
 module.exports = function(router) {
     // http://localhost:8080/api/signup
     router.post('/signup', function (req, res) {
@@ -48,7 +49,7 @@ module.exports = function(router) {
 
     });
 
-        // Define a middleware to decode the token
+    // middleware to decode the token
     router.use(function(req,res,next){
         var token = req.body.token || req.body.query ||req.headers['x-access-token'];
         if(token){
@@ -68,6 +69,8 @@ module.exports = function(router) {
     router.post('/me', function (req, res) {
         res.send(req.decoded);
     });
+
+//****************** API Routes that requires authentication *******************
 
     // http://localhost:8080/api/dashboard
     router.get('/dashboard', function (req, res) {

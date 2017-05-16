@@ -1,3 +1,4 @@
+// Controller for /projects, categorizes new, pending, expired projects
 angular.module('dashboardController', ['projectService'])
     .controller('projectsController', function (Project) {
        var app = this;

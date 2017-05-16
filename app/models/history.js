@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// history schema that holds user actions regarding expert approve/reject
 var historySchema = new Schema({
     email: {type: String, required: true},
     updatedAt: {type: Date, default: Date.now},

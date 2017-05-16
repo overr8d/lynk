@@ -1,3 +1,4 @@
+// Main controller for app, determines each route change if the user is logged in, also orchestrate login and logout operations
 angular.module('mainController',['authService'])
     .controller('loginController',function (Auth, AuthToken, $http, $timeout, $location, $rootScope) {
         var app = this;

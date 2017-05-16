@@ -1,3 +1,4 @@
+// routes for Angular APP and respective controllers
 var app = angular.module('appRoutes',["ngRoute"])
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
@@ -38,6 +39,7 @@ var app = angular.module('appRoutes',["ngRoute"])
         });
     });
 
+// redirects user to respective routes and prevent unauthorised routing
 app.run(['$rootScope', 'Auth', '$location', function ($rootScope, Auth, $location) {
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
         if( next.$$route !== undefined){

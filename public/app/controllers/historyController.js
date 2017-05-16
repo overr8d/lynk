@@ -1,3 +1,4 @@
+// Controller for /history, fetches data from API and sorts the table
 angular.module('historyController', [])
     .controller('hstryController', function ($http) {
         var app = this;

@@ -1,3 +1,4 @@
+// service module to isolate project related API calls from controller methods, handles respective API GET/POST requests
 angular.module('projectService', [])
     .factory('Project', function ($http) {
        var projectFactory = {};

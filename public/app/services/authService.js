@@ -1,3 +1,4 @@
+// Authorization service, handles token operations, intercepts each req to attach the token
 angular.module('authService', [])
     .factory('Auth', function ($http, $q, AuthToken) {
         var authFactory ={};
